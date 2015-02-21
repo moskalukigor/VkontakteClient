@@ -1,0 +1,9 @@
+﻿<Window x:Class="VkontakteClient.AuthorizationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Authorization" Height="300" Width="300">
+    <Grid>
+        <WebBrowser x:Name="BrowserAuth" Loaded="BrowserAuth_Loaded" LoadCompleted="BrowserAuth_LoadCompleted"/>
+
+    </Grid>
+</Window>
