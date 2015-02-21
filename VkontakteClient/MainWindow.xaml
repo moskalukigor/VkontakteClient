@@ -3,8 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <ListBox Name="lbxAudio" Margin="10,10,10,48" MouseDoubleClick="lbxAudio_MouseDoubleClick"/>
-        <MediaElement x:Name="mediaAudio" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0"/>
-
+        <ListBox Name="lbxAudio" Margin="10,10,10,73" MouseDoubleClick="lbxAudio_MouseDoubleClick"/>
+        <MediaElement x:Name="mediaAudio" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0" LoadedBehavior="Manual" MediaOpened="mediaAudio_MediaOpened"/>
+        <Button Name="btnStart" Margin="223,276,202,10" Click="btnStart_Click" Content="Play"></Button>
+        <Button Name="btnStop" Margin="111,276,318,10" Click="btnStop_Click" Content="Stop"></Button>
+        <Button Name="btnPause" Margin="336,276,97,10" Click="btnPause_Click" Content="Pause"></Button>
+        <Slider Name="sliderDuration" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Width="497" ValueChanged="Slider_ValueChanged"/>
     </Grid>
 </Window>

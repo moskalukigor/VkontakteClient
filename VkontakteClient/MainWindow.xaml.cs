@@ -31,7 +31,7 @@ namespace VkontakteClient
     {
 
 
-        //WM
+        
         public List<Audio> audioList;
         private readonly BackgroundWorker worker = new BackgroundWorker();
         
@@ -41,8 +41,11 @@ namespace VkontakteClient
             new AuthorizationForm().Show();
 
             worker.DoWork += worker_DoWork;
-            //worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             worker.RunWorkerAsync();
+
+            btnStart.IsEnabled = false;
+            btnStop.IsEnabled = false;
+            btnPause.IsEnabled = false;
         }
 
         public class Audio
@@ -90,21 +93,63 @@ namespace VkontakteClient
             if(e.ChangedButton == MouseButton.Left)
             {
                 mediaAudio.Source = new Uri(audioList[lbxAudio.SelectedIndex].url);
+                mediaAudio.Pause();
                 DispatcherTimer dispatcherTimer = new DispatcherTimer();
                 dispatcherTimer.Tick += new EventHandler(timer_Tick);
                 dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
                 dispatcherTimer.Start();
-                //PlayMusik();
+                btnStart.IsEnabled = true;
+                btnStop.IsEnabled = false;
+                btnPause.IsEnabled = false;
+                sliderDuration.Value = 0;
             }
-        }
-
-        void PlayMusik()
-        {
-            mediaAudio.Play();
         }
         void timer_Tick(object sender, EventArgs e)
         {
-         	
+            if(btnStart.Content == "Play" && btnStart.IsEnabled == false)
+            sliderDuration.Value = mediaAudio.Position.TotalSeconds;
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+              mediaAudio.Play();
+              btnStart.IsEnabled = false;
+              btnPause.IsEnabled = true;
+              btnStop.IsEnabled = true;
+              btnStart.Content = "Play";
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            mediaAudio.Stop();
+            btnStart.IsEnabled = true;
+            btnStop.IsEnabled = false;
+            btnPause.IsEnabled = false;
+            btnStart.Content = "Play";
+            sliderDuration.Value = 0;
+        }
+
+        private void btnPause_Click(object sender, RoutedEventArgs e)
+        {
+            mediaAudio.Pause();
+            btnStart.IsEnabled = true;
+            btnPause.IsEnabled = false;
+            btnStart.Content = "Resume";
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            TimeSpan ts = TimeSpan.FromSeconds(e.NewValue);
+            mediaAudio.Position = ts;
+        }
+
+        private void mediaAudio_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            if(mediaAudio.NaturalDuration.HasTimeSpan)
+            {
+                TimeSpan ts = TimeSpan.FromMilliseconds(mediaAudio.NaturalDuration.TimeSpan.TotalMilliseconds);
+                sliderDuration.Maximum = ts.TotalSeconds;
+            }
         }
 
 
