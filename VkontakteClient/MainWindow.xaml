@@ -1,13 +1,25 @@
 ﻿<Window x:Class="VkontakteClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:Views="clr-namespace:VkontakteClient.UserControls"
+        Title="Vkontakte" Height="350" Width="525">
     <Grid>
-        <ListBox Name="lbxAudio" Margin="10,10,10,73" MouseDoubleClick="lbxAudio_MouseDoubleClick"/>
-        <MediaElement x:Name="mediaAudio" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0" LoadedBehavior="Manual" MediaOpened="mediaAudio_MediaOpened"/>
-        <Button Name="btnStart" Margin="223,276,202,10" Click="btnStart_Click" Content="Play"></Button>
-        <Button Name="btnStop" Margin="111,276,318,10" Click="btnStop_Click" Content="Stop"></Button>
-        <Button Name="btnPause" Margin="336,276,97,10" Click="btnPause_Click" Content="Pause"></Button>
-        <Slider Name="sliderDuration" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Width="497" ValueChanged="Slider_ValueChanged"/>
+        <StackPanel Width="125" HorizontalAlignment="Left">
+            <Button Name="btnMusic" Click="btnMusic_Click">Music</Button>
+            <Button Name="btnFriends" Click="btnFriends_Click">Friends</Button>
+            <Button Name="btnNews" Click="btnNews_Click" IsEnabled="False">News</Button>
+            <Button Name="btnFeedback" Click="btnFeedback_Click" IsEnabled="False">Feedback</Button>
+            <Button Name="btnMessages" Click="btnMessages_Click" IsEnabled="False">Messages</Button>
+            <Button Name="btnCommunities" Click="btnCommunities_Click" IsEnabled="False">Communities</Button>
+            <Button Name="btnPhoto" Click="btnPhoto_Click" IsEnabled="False">Photo</Button>
+            <Button Name="btnVideos" Click="btnVideos_Click" IsEnabled="False">Videos</Button>
+            <Button Name="btnSettings" Click="btnSettings_Click" IsEnabled="False">Settings</Button>
+        </StackPanel>
+        <StackPanel Width="385" HorizontalAlignment="Right">
+            <Canvas>
+                <Views:UCAudio x:Name="UCAudio" Visibility="Hidden"></Views:UCAudio>
+                <Views:UCFriends x:Name="UCFriends" Visibility="Hidden"></Views:UCFriends>
+            </Canvas>
+        </StackPanel>
     </Grid>
 </Window>
