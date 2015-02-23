@@ -2,24 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Views="clr-namespace:VkontakteClient.UserControls"
-        Title="Vkontakte" Height="350" Width="525">
-    <Grid>
-        <StackPanel Width="125" HorizontalAlignment="Left">
-            <Button Name="btnMusic" Click="btnMusic_Click">Music</Button>
-            <Button Name="btnFriends" Click="btnFriends_Click">Friends</Button>
-            <Button Name="btnNews" Click="btnNews_Click" IsEnabled="False">News</Button>
-            <Button Name="btnFeedback" Click="btnFeedback_Click" IsEnabled="False">Feedback</Button>
-            <Button Name="btnMessages" Click="btnMessages_Click" IsEnabled="False">Messages</Button>
-            <Button Name="btnCommunities" Click="btnCommunities_Click" IsEnabled="False">Communities</Button>
-            <Button Name="btnPhoto" Click="btnPhoto_Click" IsEnabled="False">Photo</Button>
-            <Button Name="btnVideos" Click="btnVideos_Click" IsEnabled="False">Videos</Button>
-            <Button Name="btnSettings" Click="btnSettings_Click" IsEnabled="False">Settings</Button>
+        Title="Vkontakte" Height="345" Width="525" >
+    <DockPanel>
+        <StackPanel Width="125" DockPanel.Dock="Left" Background="#FF6B7C97" >
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnMusic" Click="btnMusic_Click" >Music</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnFriends" Click="btnFriends_Click">Friends</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnNews" Click="btnNews_Click">News</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnFeedback" Click="btnFeedback_Click">Feedback</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnMessages" Click="btnMessages_Click">Messages</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnCommunities" Click="btnCommunities_Click">Communities</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnPhoto" Click="btnPhoto_Click">Photo</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnVideos" Click="btnVideos_Click">Videos</Button>
+            <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34"  Name="btnSettings" Click="btnSettings_Click" >Settings</Button>
         </StackPanel>
-        <StackPanel Width="385" HorizontalAlignment="Right">
+        <StackPanel DockPanel.Dock="Right">
             <Canvas>
                 <Views:UCAudio x:Name="UCAudio" Visibility="Hidden"></Views:UCAudio>
                 <Views:UCFriends x:Name="UCFriends" Visibility="Hidden"></Views:UCFriends>
             </Canvas>
         </StackPanel>
-    </Grid>
+    </DockPanel>
 </Window>
