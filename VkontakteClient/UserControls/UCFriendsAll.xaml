@@ -6,6 +6,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="320" Width="380">
     <Grid>
-        <ListBox Name="lbxFriends" Margin="5"/>
+        <ListBox Name="lbxFriends" Margin="5">
+            
+            <Image Name="imgPreview"></Image>
+        </ListBox>
     </Grid>
 </UserControl>

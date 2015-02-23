@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <ListBox Name="lbxFriendOnline" Margin="5"/>
+        <ListBox Name="lbxFriendOnline" Margin="5">
+        </ListBox>
     </Grid>
 </UserControl>

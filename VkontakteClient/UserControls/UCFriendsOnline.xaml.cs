@@ -41,11 +41,8 @@ namespace VkontakteClient.UserControls
             public int id { get; set; }
             public string first_name { get; set; }
             public string last_name { get; set; }
-            public string deactivated { get; set; }
-            public bool hidden { get; set; }
-            public string domain { get; set; }
             public string photo_50 { get; set; }
-            public bool online { get; set; }
+            public int online { get; set; }
         }
 
 
@@ -56,7 +53,7 @@ namespace VkontakteClient.UserControls
                 Thread.Sleep(500);
             }
             WebRequest request =
-                WebRequest.Create(String.Format("https://api.vk.com/method/friends.getOnline?user_id={0}&v=5.28&access_token=", Settings1.Default.id, Settings1.Default.token));
+                WebRequest.Create(String.Format("https://api.vk.com/method/friends.get?user_id={0}&order=hints&fields=domain,photo_50,online&v=5.28", Settings1.Default.id));
             WebResponse response = request.GetResponse();
             Stream dataStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(dataStream);
@@ -73,7 +70,10 @@ namespace VkontakteClient.UserControls
             {
                 for (int i = 0; i < friendsList.Count(); i++)
                 {
-                    lbxFriendOnline.Items.Add(friendsList[i].first_name + " " + friendsList[i].last_name);
+                    if (friendsList[i].online == 1)
+                    {
+                        lbxFriendOnline.Items.Add(friendsList[i].first_name + " " + friendsList[i].last_name);
+                    }
                 }
             });
         }

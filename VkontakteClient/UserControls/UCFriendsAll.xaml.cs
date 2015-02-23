@@ -28,6 +28,8 @@ namespace VkontakteClient.UserControls
     {
 
         public List<Friend> friendsList;
+        public List<Image> imgList;
+
         private readonly BackgroundWorker worker = new BackgroundWorker();
 
         public UCFriendsAll()
@@ -45,8 +47,8 @@ namespace VkontakteClient.UserControls
             public string deactivated { get; set; }
             public bool hidden { get; set; }
             public string domain { get; set; }
-            public string photo_50 { get; set; }
-            public bool online { get; set; }
+            public ImageSource photo_50 { get; set; }
+            public int online { get; set; }
         }
 
 
@@ -57,7 +59,7 @@ namespace VkontakteClient.UserControls
                 Thread.Sleep(500);
             }
             WebRequest request =
-                WebRequest.Create(String.Format("https://api.vk.com/method/friends.get?user_id={0}&order=hints&fields=domain,photo_50&v=5.28", Settings1.Default.id));
+                WebRequest.Create(String.Format("https://api.vk.com/method/friends.get?user_id={0}&order=hints&fields=domain,photo_50,online&v=5.28", Settings1.Default.id));
             WebResponse response = request.GetResponse();
             Stream dataStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(dataStream);
@@ -74,7 +76,8 @@ namespace VkontakteClient.UserControls
             {
                 for (int i = 0; i < friendsList.Count(); i++)
                 {
-                    lbxFriends.Items.Add(friendsList[i].first_name + " " + friendsList[i].last_name);
+                        //imgList[i].Source = friendsList[i].photo_50;
+                        lbxFriends.Items.Add(friendsList[i].first_name + " " + friendsList[i].last_name);
                 }
             });
         }
