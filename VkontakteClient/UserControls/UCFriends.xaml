@@ -3,14 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Views="clr-namespace:VkontakteClient.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="320" Width="380">
+             d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <TabControl>
             <TabItem Header="All Friends">
+                    <StackPanel Orientation="Horizontal">
+                        <Views:UCFriendsAll x:Name="UCFriendsAll"></Views:UCFriendsAll>
+                    </StackPanel>
             </TabItem>
-            <TabItem Header="Online"></TabItem>
+            <TabItem Header="Online">
+                <StackPanel Orientation="Horizontal">
+                    <Views:UCFriendsOnline x:Name="UCFriendsOnline"></Views:UCFriendsOnline>
+                </StackPanel>
+            </TabItem>
         </TabControl>
-
     </Grid>
 </UserControl>

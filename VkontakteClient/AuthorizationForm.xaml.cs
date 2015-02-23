@@ -23,7 +23,7 @@ namespace VkontakteClient
         
         
         bool chkTwoAuth = false;
-        static VKSettings vs = new VKSettings("4791401", "audio"
+        static VKSettings vs = new VKSettings("4791401", "audio,friends"
                 , "http://oauth.vk.com/blank.html");
 
         public AuthorizationForm()
