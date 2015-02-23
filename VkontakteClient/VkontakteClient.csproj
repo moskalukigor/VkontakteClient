@@ -68,12 +68,6 @@
     <Compile Include="UserControls\UCFriends.xaml.cs">
       <DependentUpon>UCFriends.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UCFriendsAll.xaml.cs">
-      <DependentUpon>UCFriendsAll.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UCFriendsOnline.xaml.cs">
-      <DependentUpon>UCFriendsOnline.xaml</DependentUpon>
-    </Compile>
     <Page Include="AuthorizationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,14 +92,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCFriends.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\UCFriendsAll.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\UCFriendsOnline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
