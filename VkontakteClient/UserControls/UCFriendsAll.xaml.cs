@@ -28,7 +28,6 @@ namespace VkontakteClient.UserControls
     {
 
         public List<Friend> friendsList;
-        public List<Image> imgList;
 
         private readonly BackgroundWorker worker = new BackgroundWorker();
 
@@ -37,6 +36,7 @@ namespace VkontakteClient.UserControls
             InitializeComponent();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerAsync();
+            this.DataContext = friendsList;
         }
 
         public class Friend
@@ -47,7 +47,7 @@ namespace VkontakteClient.UserControls
             public string deactivated { get; set; }
             public bool hidden { get; set; }
             public string domain { get; set; }
-            public ImageSource photo_50 { get; set; }
+            public string photo_50 { get; set; }
             public int online { get; set; }
         }
 
@@ -72,14 +72,28 @@ namespace VkontakteClient.UserControls
             friendsList = token["response"].SelectToken("items").Children().Skip(1).Select(c => c.ToObject<Friend>())
                 .ToList();
 
+            List<FriendsLBX> items = new List<FriendsLBX>();
+
             Dispatcher.Invoke((Action)delegate
             {
                 for (int i = 0; i < friendsList.Count(); i++)
                 {
-                        //imgList[i].Source = friendsList[i].photo_50;
-                        lbxFriends.Items.Add(friendsList[i].first_name + " " + friendsList[i].last_name);
+                    items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_50 = friendsList[i].photo_50 });
                 }
+
+                lbxFriends.ItemsSource = items;
             });
+
+            
+
+            
         }
+
+        public class FriendsLBX
+        {
+            public string first_name { get; set; }
+            public string photo_50 { get; set; }
+        }
+
     }
 }

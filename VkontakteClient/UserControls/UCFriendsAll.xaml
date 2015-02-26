@@ -6,9 +6,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="320" Width="380">
     <Grid>
-        <ListBox Name="lbxFriends" Margin="5">
-            
-            <Image Name="imgPreview"></Image>
+        <ListBox Name="lbxFriends" Margin="5" HorizontalContentAlignment="Left">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Width="50" Height="50" Source="{Binding Path=photo_50}"/>
+                        <TextBlock Text="{Binding Path=first_name}" Grid.Column="1" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
         </ListBox>
     </Grid>
 </UserControl>
