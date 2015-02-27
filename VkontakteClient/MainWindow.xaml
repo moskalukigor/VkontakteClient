@@ -1,9 +1,9 @@
-﻿<Window x:Class="VkontakteClient.MainWindow"
+﻿<Window x:Name="window" x:Class="VkontakteClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Views="clr-namespace:VkontakteClient.UserControls"
-        Title="Vkontakte" Height="345" Width="525"  >
-    <DockPanel>
+        Title="Vkontakte" MinWidth="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenWidthKey}}" MinHeight="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" Height="741" Width="1570"  >
+    <DockPanel x:Name="dockPanel">
         <StackPanel Width="125" DockPanel.Dock="Left" Background="#FF6B7C97" >
             <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnMusic" Click="btnMusic_Click" >Music</Button>
             <Button FontFamily="Source Sans Pro Semibold" FontWeight="Bold" FontStyle="Italic" FontSize="16" Foreground="White" Background="{x:Null}" Height="34" Name="btnFriends" Click="btnFriends_Click">Friends</Button>
@@ -17,7 +17,7 @@
         </StackPanel>
         <StackPanel DockPanel.Dock="Right">
             <Canvas>
-                <Views:UCAudio x:Name="UCAudio" Visibility="Hidden"/>
+                <Views:UCAudio x:Name="UCAudio" Visibility="Hidden"  Height="741" Width="1570"/>
                 <Views:UCFriends x:Name="UCFriends" Visibility="Hidden"></Views:UCFriends>
             </Canvas>
         </StackPanel>

@@ -47,7 +47,7 @@ namespace VkontakteClient.UserControls
             public string deactivated { get; set; }
             public bool hidden { get; set; }
             public string domain { get; set; }
-            public string photo_50 { get; set; }
+            public string photo_100 { get; set; }
             public int online { get; set; }
         }
 
@@ -59,7 +59,7 @@ namespace VkontakteClient.UserControls
                 Thread.Sleep(500);
             }
             WebRequest request =
-                WebRequest.Create(String.Format("https://api.vk.com/method/friends.get?user_id={0}&order=hints&fields=domain,photo_50,online&v=5.28", Settings1.Default.id));
+                WebRequest.Create(String.Format("https://api.vk.com/method/friends.get?user_id={0}&order=hints&fields=domain,photo_100,online&v=5.28", Settings1.Default.id));
             WebResponse response = request.GetResponse();
             Stream dataStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(dataStream);
@@ -78,7 +78,10 @@ namespace VkontakteClient.UserControls
             {
                 for (int i = 0; i < friendsList.Count(); i++)
                 {
-                    items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_50 = friendsList[i].photo_50 });
+                    if(friendsList[i].online == 1)
+                        items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_100 = friendsList[i].photo_100 , online = "Online"});
+                    else
+                        items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_100 = friendsList[i].photo_100, online = "" });
                 }
 
                 lbxFriends.ItemsSource = items;
@@ -92,7 +95,23 @@ namespace VkontakteClient.UserControls
         public class FriendsLBX
         {
             public string first_name { get; set; }
-            public string photo_50 { get; set; }
+            public string photo_100 { get; set; }
+            public string online { get; set; }
+        }
+
+        private void btnSend_a_Message_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBrowse_Friends_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRemove_from_Friends_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

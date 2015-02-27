@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VkontakteClient.UserControls.UCFriends"
+﻿<UserControl x:Name="userControl" x:Class="VkontakteClient.UserControls.UCFriends"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,12 @@
              xmlns:Views="clr-namespace:VkontakteClient.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid x:Name="grid">
         <TabControl>
             <TabItem Header="All Friends">
-                    <StackPanel Orientation="Horizontal">
-                        <Views:UCFriendsAll x:Name="UCFriendsAll"></Views:UCFriendsAll>
-                    </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Views:UCFriendsAll x:Name="UCFriendsAll" Height="741" Width="1570" ></Views:UCFriendsAll>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Online">
                 <StackPanel Orientation="Horizontal">

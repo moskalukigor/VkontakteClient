@@ -12,10 +12,19 @@
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="350"/>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Width="50" Height="50" Source="{Binding Path=photo_50}"/>
-                        <TextBlock Text="{Binding Path=first_name}" Grid.Column="1" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Width="100" Height="100" Source="{Binding Path=photo_100}"/>
+                        <TextBlock Margin="10,0,0,0" Text="{Binding Path=first_name}" Grid.Column="1" Foreground="#FF537599" FontWeight="Bold" FontSize="16" />
+                        <TextBlock Margin="10,20,0,0" Text="{Binding Path=online}" Grid.Column="1" Foreground="#FFBBBBBB" FontWeight="Bold" FontSize="16"/>
+                        <Button Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,-50,0,0"  Height="20" Name="btnSend_a_Message"      Click="btnSend_a_Message_Click"      Grid.Column="2" Foreground="#FF537599" FontSize="12" HorizontalAlignment="Left" >Send a message</Button>
+                        <Button Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,-10,0,0"  Height="20" Name="btnBrowse_Friends"      Click="btnBrowse_Friends_Click"      Grid.Column="2" Foreground="#FF537599" FontSize="12" HorizontalAlignment="Left" >Browse friends</Button>
+                        <Button Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,+30,0,0"  Height="20" Name="btnRemove_from_Friends" Click="btnRemove_from_Friends_Click" Grid.Column="2" Foreground="#FF537599" FontSize="12" HorizontalAlignment="Left" >Remove from friends</Button>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
