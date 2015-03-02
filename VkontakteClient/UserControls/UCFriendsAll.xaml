@@ -6,10 +6,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="320" Width="380">
     <Grid>
-        <ListBox Name="lbxFriends" Margin="5" HorizontalContentAlignment="Left">
+        <ListBox Name="lbxFriends" Margin="5" HorizontalContentAlignment="Left" Tag="{Binding Path=IDLBXItem}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="0,2">
+                    <Grid Margin="0,2" Tag="{Binding Path=IDFriend}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="350"/>
