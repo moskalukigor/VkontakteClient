@@ -28,6 +28,8 @@ namespace VkontakteClient.UserControls
     {
 
         public List<Friend> friendsList;
+        public List<FriendDeleteResponse> friendDeleteResponseList;
+        public List<FriendsLBX> items = new List<FriendsLBX>();
 
         private readonly BackgroundWorker worker = new BackgroundWorker();
 
@@ -49,6 +51,18 @@ namespace VkontakteClient.UserControls
             public string domain { get; set; }
             public string photo_100 { get; set; }
             public int online { get; set; }
+        }
+        public class FriendsLBX
+        {
+            public string first_name { get; set; }
+            public string photo_100 { get; set; }
+            public string online { get; set; }
+            public string btnRemoveFromFriendsContent { get; set; }
+        }
+        public class FriendDeleteResponse
+        {
+            public int success { get; set; }
+            public int friend_deleted { get; set; }
         }
 
 
@@ -72,16 +86,16 @@ namespace VkontakteClient.UserControls
             friendsList = token["response"].SelectToken("items").Children().Skip(1).Select(c => c.ToObject<Friend>())
                 .ToList();
 
-            List<FriendsLBX> items = new List<FriendsLBX>();
+            
 
             Dispatcher.Invoke((Action)delegate
             {
                 for (int i = 0; i < friendsList.Count(); i++)
                 {
                     if(friendsList[i].online == 1)
-                        items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_100 = friendsList[i].photo_100 , online = "Online"});
+                        items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_100 = friendsList[i].photo_100 , online = "Online" , btnRemoveFromFriendsContent = "Remove friend"});
                     else
-                        items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_100 = friendsList[i].photo_100, online = "" });
+                        items.Add(new FriendsLBX() { first_name = friendsList[i].first_name + " " + friendsList[i].last_name, photo_100 = friendsList[i].photo_100, online = "", btnRemoveFromFriendsContent = "Remove friend" });
                 }
 
                 lbxFriends.ItemsSource = items;
@@ -92,12 +106,7 @@ namespace VkontakteClient.UserControls
             
         }
 
-        public class FriendsLBX
-        {
-            public string first_name { get; set; }
-            public string photo_100 { get; set; }
-            public string online { get; set; }
-        }
+
 
         private void btnSend_a_Message_Click(object sender, RoutedEventArgs e)
         {
@@ -109,10 +118,39 @@ namespace VkontakteClient.UserControls
 
         }
 
+
+
         private void btnRemove_from_Friends_Click(object sender, RoutedEventArgs e)
         {
+            if(lbxFriends.SelectedIndex == -1)
+            {
+                MessageBox.Show("select the item");
+            }
+            else
+            { 
+                WebRequest request =
+                    WebRequest.Create(String.Format("https://api.vk.com/method/friends.delete?user_id={0}&access_token={1}&v=5.28", friendsList[lbxFriends.SelectedIndex].id, Settings1.Default.token));
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
 
+                JToken token = JToken.Parse(responseFromServer);
+                friendDeleteResponseList = token.First.Select(c => c.ToObject<FriendDeleteResponse>())
+                    .ToList();
+                if(friendDeleteResponseList[0].success == 1 && friendDeleteResponseList[0].friend_deleted == 1)
+                {
+                    items[lbxFriends.SelectedIndex].btnRemoveFromFriendsContent = "Success";
+                    lbxFriends.ItemsSource = null;
+                    lbxFriends.ItemsSource = items;
+
+                }
+            }
+
+            //"{\"response\":{\"success\":1,\"friend_deleted\":1}}"
         }
-
+        
     }
 }
