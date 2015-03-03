@@ -17,8 +17,9 @@
         </StackPanel>
         <StackPanel DockPanel.Dock="Right">
             <Canvas>
-                <Views:UCAudio x:Name="UCAudio" Visibility="Hidden"  Height="741" Width="1570"/>
-                <Views:UCFriends x:Name="UCFriends" Visibility="Hidden"></Views:UCFriends>
+                <Views:UCAudio x:Name="UCAudio" Visibility="Collapsed"  Height="741" Width="1570"/>
+                <Views:UCFriends x:Name="UCFriends" Visibility="Collapsed"></Views:UCFriends>
+                <Views:UCMessageList x:Name="UCMessageList" Visibility="Collapsed"></Views:UCMessageList>
             </Canvas>
         </StackPanel>
     </DockPanel>

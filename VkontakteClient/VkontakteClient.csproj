@@ -48,9 +48,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -73,6 +73,9 @@
     </Compile>
     <Compile Include="UserControls\UCFriendsOnline.xaml.cs">
       <DependentUpon>UCFriendsOnline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCMessageList.xaml.cs">
+      <DependentUpon>UCMessageList.xaml</DependentUpon>
     </Compile>
     <Page Include="AuthorizationForm.xaml">
       <SubType>Designer</SubType>
@@ -106,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCFriendsOnline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCMessageList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

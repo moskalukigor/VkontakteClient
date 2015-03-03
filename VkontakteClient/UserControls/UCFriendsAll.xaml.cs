@@ -36,9 +36,7 @@ namespace VkontakteClient.UserControls
         public UCFriendsAll()
         {
             InitializeComponent();
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerAsync();
-            this.DataContext = friendsList;
+            GetAllFriends();
         }
 
         public class Friend
@@ -68,8 +66,12 @@ namespace VkontakteClient.UserControls
         }
 
 
-
-
+        public void GetAllFriends()
+        {
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerAsync();
+            this.DataContext = friendsList;
+        }
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             while (!Settings1.Default.auth)
@@ -87,7 +89,7 @@ namespace VkontakteClient.UserControls
             responseFromServer = HttpUtility.HtmlDecode(responseFromServer);
 
             JToken token = JToken.Parse(responseFromServer);
-            friendsList = token["response"].SelectToken("items").Children().Skip(1).Select(c => c.ToObject<Friend>())
+            friendsList = token["response"].SelectToken("items").Children().Select(c => c.ToObject<Friend>())
                 .ToList();
 
             
@@ -103,11 +105,7 @@ namespace VkontakteClient.UserControls
                 }
 
                 lbxFriends.ItemsSource = items;
-            });
-
-            
-
-            
+            });    
         }
 
         private void btnSend_a_Message_Click(object sender, RoutedEventArgs e)
@@ -140,9 +138,11 @@ namespace VkontakteClient.UserControls
                  .ToList();
              if(friendDeleteResponseList[0].success == 1 && friendDeleteResponseList[0].friend_deleted == 1)
              {
-                 //lbxFriends.Items.RemoveAt((int)prListBoxID.Tag);
+                 items = null;
+                 items = new List<FriendsLBX>();
                  lbxFriends.ItemsSource = null;
-                 lbxFriends.ItemsSource = items;   
+                 friendsList = null;
+                 GetAllFriends();   
              }
         }
         

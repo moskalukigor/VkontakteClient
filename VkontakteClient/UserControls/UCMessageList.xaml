@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="VkontakteClient.UserControls.UCMessageList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ListBox Name="lbxMessages" Margin="5" HorizontalContentAlignment="Left" Tag="{Binding Path=IDLBXItem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2" Tag="{Binding Path=IDFriend}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Width="100" Height="100" Source="{Binding Path=photo_100}"/>
+                        <TextBlock Margin="10,0,0,0" Text="{Binding Path=first_name}" Grid.Column="1" Foreground="#FF537599" FontWeight="Bold" FontSize="16" />
+                        <TextBlock Margin="10,20,0,0" Text="{Binding Path=online}" Grid.Column="1" Foreground="#FFBBBBBB" FontWeight="Bold" FontSize="16"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

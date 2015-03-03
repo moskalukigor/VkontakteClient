@@ -46,8 +46,9 @@ namespace VkontakteClient
 
         public void InvisibleAllUC()
         {
-            UCAudio.Visibility = Visibility.Hidden;
-            UCFriends.Visibility = Visibility.Hidden;
+            UCAudio.Visibility = Visibility.Collapsed;
+            UCFriends.Visibility = Visibility.Collapsed;
+            UCMessageList.Visibility = Visibility.Collapsed;
         }
         private void btnMusic_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +73,8 @@ namespace VkontakteClient
 
         private void btnMessages_Click(object sender, RoutedEventArgs e)
         {
-
+            InvisibleAllUC();
+            UCMessageList.Visibility = Visibility.Visible;
         }
 
         private void btnCommunities_Click(object sender, RoutedEventArgs e)
